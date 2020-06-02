@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Counting_Characters
 {
@@ -12,14 +13,18 @@ namespace Counting_Characters
             for (int i = 0; i < sentence.Length; i++)
             {
                 char currentCharacter = sentence[i];
-                if (!characterCounts.ContainsKey(currentCharacter))
+                if (Char.IsLetterOrDigit(currentCharacter))
                 {
-                    characterCounts.Add(currentCharacter, 1);
+                    if (!characterCounts.ContainsKey(currentCharacter))
+                    {
+                        characterCounts.Add(currentCharacter, 1);
+                    }
+                    else
+                    {
+                        characterCounts[currentCharacter]++;
+                    }
                 }
-                else
-                {
-                    characterCounts[currentCharacter]++;
-                }
+                
             }
             return characterCounts;
         }
